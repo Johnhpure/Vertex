@@ -1,0 +1,18 @@
+{
+  "name": "yaml-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vertex AI API 代理网关 — 将 OpenAI 格式请求转换为 Vertex AI 调用",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "start": "npm run start --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

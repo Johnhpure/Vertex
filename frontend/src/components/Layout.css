@@ -1,0 +1,284 @@
+/**
+ * Layout 组件样式
+ * 侧边栏导航 + 响应式移动端布局
+ * Glassmorphism + 暗黑科技风
+ */
+
+/* ========== 整体布局 ========== */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========== 侧边栏 ========== */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    z-index: 100;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-subtle);
+}
+
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+}
+
+/* 品牌区域 */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1.25rem 1.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--accent-bg);
+    border: 1px solid var(--border-default);
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    line-height: 1.2;
+}
+
+.brand-name {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.brand-sub {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* 导航链接 */
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 1rem 0.75rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    position: relative;
+}
+
+.sidebar-link:hover {
+    color: var(--text-secondary);
+    background: rgba(100, 108, 255, 0.06);
+}
+
+.sidebar-link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-link:hover .sidebar-link-icon {
+    opacity: 0.85;
+}
+
+.sidebar-link-text {
+    white-space: nowrap;
+}
+
+/* 激活状态 */
+.sidebar-link-active {
+    color: var(--accent-light);
+    background: var(--accent-bg);
+}
+
+.sidebar-link-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 0 3px 3px 0;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.sidebar-link-active .sidebar-link-icon {
+    opacity: 1;
+    color: var(--accent-light);
+}
+
+.sidebar-link-active:hover {
+    background: rgba(100, 108, 255, 0.12);
+}
+
+/* 底部信息 */
+.sidebar-footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.sidebar-version {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--text-dimmed);
+    letter-spacing: 0.01em;
+}
+
+.version-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success);
+    flex-shrink: 0;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ========== 主内容区 ========== */
+
+.main-content {
+    flex: 1;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+.content-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+}
+
+/* ========== 移动端顶部栏（默认隐藏） ========== */
+
+.mobile-header {
+    display: none;
+}
+
+/* ========== 响应式 ========== */
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        padding: 0 1rem;
+        background: rgba(15, 22, 41, 0.85);
+        backdrop-filter: var(--blur-md);
+        -webkit-backdrop-filter: var(--blur-md);
+        border-bottom: 1px solid var(--border-subtle);
+        z-index: 100;
+    }
+
+    .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .mobile-title {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .mobile-nav {
+        display: flex;
+        gap: 4px;
+    }
+
+    .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: var(--radius-sm);
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+    }
+
+    .mobile-link:hover {
+        color: var(--text-secondary);
+        background: var(--accent-bg);
+    }
+
+    .mobile-link-active {
+        color: var(--accent-light);
+        background: var(--accent-bg);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 56px;
+    }
+
+    .content-inner {
+        padding: 1.25rem 1rem;
+    }
+}
