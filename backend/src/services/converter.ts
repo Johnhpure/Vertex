@@ -238,7 +238,7 @@ export function convertResponseToOpenAI(geminiResponse: GeminiResponse): OpenAII
 
     // 遍历 parts，处理顺序不固定的情况
     for (const part of parts) {
-        if (part.inlineData && part.inlineData.mimeType === 'image/png') {
+        if (part.inlineData && part.inlineData.mimeType?.startsWith('image/')) {
             imageData = part.inlineData.data;
         }
         if (part.text) {

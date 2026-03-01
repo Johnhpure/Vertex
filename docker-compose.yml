@@ -4,18 +4,17 @@ services:
     container_name: vertex-proxy
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "192.168.1.6:20200:3000"
     environment:
       - PORT=3000
       - NODE_ENV=production
-      - API_KEY=your_openai_compatible_api_key_here
-      - CLOUD_REGION=us-central1
+      - ENCRYPTION_KEY=your_64_hex_char_encryption_key_here
+      - VERTEX_LOCATION=global
       - CLOUD_PROJECT_ID=your_gcp_project_id_here
       - GOOGLE_APPLICATION_CREDENTIALS=/app/backend/config/service-account.json
     volumes:
-      - ./backend/data:/app/backend/data
-      # 挂载您的 GCP 服务账号 JSON 文件
-      - ./backend/config/service-account.json:/app/backend/config/service-account.json
+      - ./data:/app/data
+      - ./backend/config/service-account.json:/app/backend/config/service-account.json:ro
     networks:
       - vertex-network
 

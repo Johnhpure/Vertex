@@ -156,6 +156,9 @@ export async function generateImage(
     // 构建 config 根级别对象
     const configObj: Record<string, unknown> = {};
 
+    // responseModalities — 强制要求返回文本和图片
+    configObj.responseModalities = ['TEXT', 'IMAGE'];
+
     // imageConfig 子对象
     if (Object.keys(imageConfigObj).length > 0) {
         configObj.imageConfig = imageConfigObj;

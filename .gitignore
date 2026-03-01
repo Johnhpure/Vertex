@@ -1,3 +1,6 @@
+# 敏感配置
+backend/config/
+
 # 依赖
 node_modules/
 
