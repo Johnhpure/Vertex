@@ -47,6 +47,28 @@ npm run build
 npm start
 ```
 
+## Docker 部署
+
+该项目支持通过 Docker 进行容器化部署。
+
+### 1. 构建镜像
+
+在项目根目录下执行：
+
+```bash
+docker build -t vertex-proxy .
+```
+
+### 2. 使用 Docker Compose 启动
+
+编辑 `docker-compose.yml` 中的环境变量和卷路径，然后启动：
+
+```bash
+docker-compose up -d
+```
+
+> **注意：** 请确保将 `service-account.json` 放在 `backend/config/` 目录下，并正确映射到容器内。
+
 ## 项目结构
 
 ```
