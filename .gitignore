@@ -26,3 +26,9 @@ Thumbs.db
 # 日志
 *.log
 npm-debug.log*
+
+# AI 代理元数据
+.agent/
+.serena/
+_bmad/
+_bmad-output/
